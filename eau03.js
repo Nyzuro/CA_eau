@@ -1,24 +1,57 @@
-const arguments = process.argv.slice(2)
-
-//Fonctions
-function fibonacci() {
-    if (argument < 2) {
-        return argument
+//Utils
+function fibonacci(number) {
+    if (number < 2) {
+        return number
     }
     let suite = [0, 1]
-    for (i = suite.length; i <= argument; i++) {
+    for (let i = suite.length; i <= number; i++) {
         suite[i] = suite[i - 1] + suite[i - 2]
+        if (i === number) {
+            return suite[i]
+        }
     }
-    return suite[i - 1]
 }
 //Gestion d'erreurs
-if (arguments < 0 || isNaN(arguments) || arguments.length != 1) {
-    console.error(-1)
-    process.exit()
+function isValidArguments(arguments) {
+    if (arguments.length != 1) {
+        return console.log("-1")
+    } if (arguments[0] < 0) {
+        return console.log("-1")
+    } else {
+        return arguments
+    }
 }
+
+function isValidNumber(number) {
+    if (!isNaN(number)) {
+        return Number(number)
+    } else {
+        return console.log("-1")
+    }
+}
+
 //Parsing
-const argument = arguments[0]
+function getArguments() {
+    const arguments = process.argv.slice(2)
+    return arguments
+}
+
 //Resolution
-const indexFibonacci = fibonacci(argument)
+function getFibonacciNumber() {
+    const argument = isValidArguments(getArguments())
+    if (!argument) {
+        return
+    }
+
+    const number = isValidNumber(getArguments())
+    if (number === 0) {
+        return console.log(fibonacci(number))
+    } if (!number) {
+        return
+    }
+
+    return console.log(fibonacci(number))
+}
+
 //Affichage
-console.log(indexFibonacci)
+getFibonacciNumber()
