@@ -1,21 +1,48 @@
-const arguments = process.argv.slice(2)
-
-function strCompare() {
-    const index = str.indexOf(strToFind)
-    if (index === -1) {
-        return false
+//Utils
+function stringCompare(string, stringToFind) {
+    let sameChar = false
+    for (i = 0; sameChar === false; i++) {
+        if (string[i] === stringToFind[0]) {
+            for (chartofind of stringToFind) {
+                if (string[i] === chartofind) {
+                    sameChar = true
+                    i++
+                } else {
+                    sameChar = false
+                    break
+                }
+            }
+        }
+        if (sameChar === false && !string[i]) {
+            return false
+        }
     }
-    return true
+    return sameChar
+}
+//Gestion d'erreurs
+function isValidArguments(arguments) {
+    if (arguments.length != 2) {
+        console.error("Le nombre d'arguments n'est pas bon")
+        process.exit()
+    }
+    for (char of arguments) {
+        if (!isNaN(char)) {
+            console.error("Les arguments ne doivent pas etre des nombres")
+            process.exit()
+        }
+    }
+
+    return arguments
+}
+//Parsing
+function getArguments() {
+    const arguments = process.argv.slice(2)
+    return arguments
+}
+//Resolution
+function resolveStringCompare() {
+    const strings = isValidArguments(getArguments())
+    return stringCompare(strings[0], strings[1])
 }
 
-if (arguments.length !== 2) {
-    console.error("error")
-    process.exit()
-}
-
-const str = arguments[0]
-const strToFind = arguments[1]
-
-const result = strCompare(str, strToFind)
-
-console.log(result)
+console.log(resolveStringCompare())
