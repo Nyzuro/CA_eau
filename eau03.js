@@ -14,44 +14,33 @@ function fibonacci(number) {
 //Gestion d'erreurs
 function isValidArguments(arguments) {
     if (arguments.length != 1) {
-        return console.log("-1")
+        console.error("Le nombre d'arguments n'est pas bon")
+        process.exit()
     } if (arguments[0] < 0) {
-        return console.log("-1")
+        console.error("Le nombre est trop petit")
+        process.exit()
     } else {
         return arguments
     }
 }
-
 function isValidNumber(number) {
     if (!isNaN(number)) {
         return Number(number)
     } else {
-        return console.log("-1")
+        console.error("L'argument n'est pas un nombre")
+        process.exit()
     }
 }
-
 //Parsing
 function getArguments() {
     const arguments = process.argv.slice(2)
     return arguments
 }
-
 //Resolution
 function getFibonacciNumber() {
-    const argument = isValidArguments(getArguments())
-    if (!argument) {
-        return
-    }
+    const number = isValidNumber(isValidArguments(getArguments()))
 
-    const number = isValidNumber(getArguments())
-    if (number === 0) {
-        return console.log(fibonacci(number))
-    } if (!number) {
-        return
-    }
-
-    return console.log(fibonacci(number))
+    return fibonacci(number)
 }
-
 //Affichage
-getFibonacciNumber()
+console.log(getFibonacciNumber())
