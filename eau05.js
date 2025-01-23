@@ -1,7 +1,7 @@
 //Utils
 function stringCompare(string, stringToFind) {
     let sameChar = false
-    for (i = 0; sameChar === false; i++) {
+    for (let i = 0; sameChar === false; i++) {
         if (string[i] === stringToFind[0]) {
             for (chartofind of stringToFind) {
                 if (string[i] === chartofind) {
