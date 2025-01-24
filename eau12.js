@@ -13,6 +13,10 @@ function bubble_sort(array) {
     return array
 }
 
+if (args.length < 2) {
+    console.error("Le nombre d'arguments est trop faible")
+    process.exit()
+}
 const numbers = []
 for (let arg of args) {
     if (isNaN(arg)) {
@@ -20,10 +24,6 @@ for (let arg of args) {
         process.exit()
     }
     numbers.push(Number(arg))
-}
-if (args.length < 2) {
-    console.error("Le nombre d'arguments est trop faible")
-    process.exit()
 }
 
 console.log(bubble_sort(numbers))

@@ -20,18 +20,17 @@ function selectSort(array) {
     return array
 }
 
-const argsNumber = []
-for (i of args) {
-    const currentNumber = parseInt(i)
-    if (isNaN(currentNumber)) {
-        console.error("error")
+const numbers = []
+for (let arg of args) {
+    if (isNaN(arg)) {
+        console.error("Ce ne sont pas des nombres")
         process.exit()
     }
-    argsNumber.push(currentNumber)
+    numbers.push(Number(arg))
 }
 if (args.length < 2) {
-    console.error("error")
+    console.error("Le nombre d'arguments est trop faible")
     process.exit()
 }
 
-console.log(selectSort(argsNumber))
+console.log(selectSort(numbers))
