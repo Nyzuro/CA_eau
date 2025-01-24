@@ -1,9 +1,6 @@
 const arguments = process.argv.slice(2)
 
 function checkNumber() {
-    if (Number(string)) {
-        return true
-    }
     for (i in string) {
         charAscii = string.charCodeAt(i)
         if (charAscii < 48 || charAscii > 57) {
