@@ -1,15 +1,9 @@
 function isLower(character) {
-    if (character >= "a" && character <= "z") {
-        return true
-    }
-    return false
+    return (character >= "a" && character <= "z")
 }
 
 function isUpper(character) {
-    if (character >= "A" && character <= "Z") {
-        return true
-    }
-    return false
+    return (character >= "A" && character <= "Z")
 }
 
 function upperOrLower(string) {
