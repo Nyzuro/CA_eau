@@ -16,10 +16,12 @@ if (arguments.length != 2) {
     console.error("error")
     process.exit()
 }
-for (i of arguments) {
-    if (isNaN(i)) {
+for (const argument of arguments) {
+    if (isNaN(argument)) {
         console.error("error")
         process.exit()
+    } else {
+        Number(argument)
     }
 }
 
