@@ -1,12 +1,11 @@
 const args = process.argv.slice(2)
 
-function numberDifference() {
-    const numbers = args
-    let minimalDifference = null
-    for (i = 0; numbers[i]; i++) {
-        for (j = i + 1; numbers[j]; j++) {
+function numberDifference(numbers) {
+    let minimalDifference = Infinity
+    for (let i = 0; i < numbers.length - 1; i++) {
+        for (let j = i + 1; numbers[j]; j++) {
             const difference = Math.abs(numbers[i] - numbers[j])
-            if (!minimalDifference || difference < minimalDifference) {
+            if (difference < minimalDifference) {
                 minimalDifference = difference
             }
         }
@@ -15,13 +14,15 @@ function numberDifference() {
 }
 
 if (args.length < 2) {
-    console.error("error")
+    console.error("Le nombre d'arguments est trop faible")
     process.exit()
-} for (i of args) {
-    if (isNaN(i)) {
-        console.error("error")
+}
+for (let arg of args) {
+    if (isNaN(arg)) {
+        console.error("Ce ne sont pas des nombres")
         process.exit()
     }
+    arg = Number(arg)
 }
 
-console.log(numberDifference())
+console.log(numberDifference(args))
