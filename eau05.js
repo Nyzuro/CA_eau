@@ -25,7 +25,7 @@ function isValidArguments(arguments) {
         console.error("Le nombre d'arguments n'est pas bon")
         process.exit()
     }
-    for (char of arguments) {
+    for (constchar of arguments) {
         if (!isNaN(char)) {
             console.error("Les arguments ne doivent pas etre des nombres")
             process.exit()
