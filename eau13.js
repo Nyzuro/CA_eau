@@ -1,16 +1,14 @@
 const args = process.argv.slice(2)
 
 function selectSort(array) {
-    const length = array.length
-    for (i = 0; i <= length - 2; i++) {
+    for (let i = 0; i <= array.length - 2; i++) {
         let min = array[i]
-        let j = i + 1
-        for (j = i + 1; j <= length - 1; j++) {
+        for (let j = i + 1; j <= array.length - 1; j++) {
             if (array[j] < min) {
                 min = array[j]
             }
         }
-        if (min != array[i]) {
+        if (min !== array[i]) {
             const indexMin = array.indexOf(min)
             const temp = array[i]
             array[i] = min
@@ -20,6 +18,10 @@ function selectSort(array) {
     return array
 }
 
+if (args.length < 2) {
+    console.error("Le nombre d'arguments est trop faible")
+    process.exit()
+}
 const numbers = []
 for (let arg of args) {
     if (isNaN(arg)) {
@@ -27,10 +29,6 @@ for (let arg of args) {
         process.exit()
     }
     numbers.push(Number(arg))
-}
-if (args.length < 2) {
-    console.error("Le nombre d'arguments est trop faible")
-    process.exit()
 }
 
 console.log(selectSort(numbers))
