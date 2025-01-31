@@ -1,49 +1,59 @@
 //Utils
+function isPrimeNumber(dividend, divisor) {
+  if (dividend % divisor === 0) {
+    return false;
+  }
+  return true;
+}
+
 function nextPrimeNumber(number) {
-    if (number < 2) {
-        return 2
+  if (number < 2) {
+    return 2;
+  }
+  let isPrime = false;
+  let PrimeNumber;
+  for (let i = number + 1; isPrime === false; i++) {
+    for (let j = 2; j < i; j++) {
+      if (isPrimeNumber(i, j)) {
+        isPrime = true;
+      } else {
+        isPrime = false;
+        break;
+      }
     }
-    let isPrime = false
-    let numberTest
-    for (numberTest = number + 1; isPrime === false; numberTest++) {
-        for (let i = 2; i < numberTest; i++) {
-            if (numberTest % i === 0) {
-                isPrime = false
-                break
-            } else {
-                isPrime = true
-            }
-        }
-    }
-    return numberTest - 1
+    PrimeNumber = i;
+  }
+  return PrimeNumber;
 }
 //Gestion d'erreurs
 function isValidArguments(arguments) {
-    if (arguments.length != 1) {
-        console.error("Le nombre d'arguments n'est pas bon")
-        process.exit()
-    } else {
-        return arguments
-    }
+  if (arguments.length != 1) {
+    console.error("Le nombre d'arguments n'est pas bon");
+    return;
+  }
+  return arguments;
 }
 
-function isValidNumber(number) {
-    if (!isNaN(number)) {
-        return Number(number)
-    } else {
-        console.error("L'argument n'est pas un nombre")
-        process.exit()
-    }
+function isValidNumber(arguments) {
+  if (isNaN(arguments[0])) {
+    console.error("L'argument n'est pas un nombre");
+    return;
+  }
+  const number = Number(arguments[0]);
+  return number;
 }
 //Parsing
 function getArguments() {
-    const arguments = process.argv.slice(2)
-    return arguments
+  const arguments = process.argv.slice(2);
+  return arguments;
 }
 //Resolution
 function getNextPrimeNumber() {
-    const number = isValidNumber(isValidArguments(getArguments()))
-    return nextPrimeNumber(number)
+  const arguments = isValidArguments(getArguments());
+  if (!arguments) return;
+  const number = isValidNumber(arguments);
+  if (!number) return;
+  return nextPrimeNumber(number);
 }
 //Affichage
-console.log(getNextPrimeNumber())
+console.log(getNextPrimeNumber());

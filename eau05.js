@@ -1,48 +1,42 @@
 //Utils
 function stringCompare(string, stringToFind) {
-    let sameChar = false
-    for (let i = 0; sameChar === false; i++) {
-        if (string[i] === stringToFind[0]) {
-            for (chartofind of stringToFind) {
-                if (string[i] === chartofind) {
-                    sameChar = true
-                    i++
-                } else {
-                    sameChar = false
-                    break
-                }
-            }
-        }
-        if (sameChar === false && !string[i]) {
-            return false
-        }
+  for (let i = 0; i <= string.length; i++) {
+    let j = 0;
+    while (string[i] === stringToFind[j]) {
+      i++;
+      j++;
+      if (j === stringToFind.length) return true;
     }
-    return sameChar
+    if (j !== 0) {
+      i--;
+    }
+  }
+  return false;
 }
 //Gestion d'erreurs
 function isValidArguments(arguments) {
-    if (arguments.length != 2) {
-        console.error("Le nombre d'arguments n'est pas bon")
-        process.exit()
+  if (arguments.length != 2) {
+    console.error("Le nombre d'arguments n'est pas bon");
+    return;
+  }
+  for (const char of arguments) {
+    if (!isNaN(char)) {
+      console.error("Les arguments ne doivent pas etre des nombres");
+      return;
     }
-    for (constchar of arguments) {
-        if (!isNaN(char)) {
-            console.error("Les arguments ne doivent pas etre des nombres")
-            process.exit()
-        }
-    }
-
-    return arguments
+  }
+  return arguments;
 }
 //Parsing
 function getArguments() {
-    const arguments = process.argv.slice(2)
-    return arguments
+  const arguments = process.argv.slice(2);
+  return arguments;
 }
 //Resolution
 function resolveStringCompare() {
-    const strings = isValidArguments(getArguments())
-    return stringCompare(strings[0], strings[1])
+  const strings = isValidArguments(getArguments());
+  if (!strings) return;
+  return stringCompare(strings[0], strings[1]);
 }
 
-console.log(resolveStringCompare())
+console.log(resolveStringCompare());
